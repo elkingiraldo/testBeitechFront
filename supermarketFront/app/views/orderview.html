@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-md-12">
+		<h4>You need to write the registered email and click on "List
+			Orders" button for showing the last month order related with this
+			client</h4>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-8">
+		<form>
+			Tappe your e-mail address: <input type="text" ng-model="email">
+		</form>
+	</div>
+	<div class="col-md-4">
+		<button class="btn btn-primary" ng-click="btnConfirmation()">
+			<b>List Orders</b>
+		</button>
+	</div>
+</div>
+<br>
+<div class="row" id="tableOrders" style="display:none">
+	<div class="col-md-12">
+		<table datatable="ng" id="orders-table" dt-options="dtOptions"
+			class="table table-striped" style="cellspacing: 0; width: 100%;">
+			<thead>
+				<tr>
+					<th><b>Creation Date</b></th>
+					<th><b>Order ID</b></th>
+					<th><b>Total $</b></th>
+					<th><b>Delivery Address</b></th>
+					<th><b>Products</b></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="order in tableOrders">
+					<td>{{order.createdOn | date : "yyyy-MM-dd"}}</td>
+					<td>{{order.orderId}}</td>
+					<td>{{order.orderPrice}}</td>
+					<td>{{order.deliveryAddress}}</td>
+					<td><ul>
+							<li ng-repeat="detail in order.listOrderDetail">{{detail.description}}</li>
+						</ul></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row" id="warningMessage" style="display:none">
+	<div class="col-md-12">
+	<h4 style="color : red;">{{warning}}</h4>
+	</div>	
+</div>
